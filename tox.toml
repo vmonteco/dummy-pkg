@@ -1,0 +1,35 @@
+require = "tox>=4.53.0"
+env_list = [
+    "static-types-analysis",
+    "lint",
+    "tests-3.10",
+    "tests-3.11",
+    "tests-3.12",
+    "tests-3.13",
+    "tests-3.14",
+    "formatting",
+]
+
+[env_run_base]
+skip_install = true
+allowlist_externals = ["poetry"]
+commands_pre = [["poetry", "install"]]
+
+[env_base.tests]
+factors = [["3.10", "3.11", "3.12", "3.13", "3.14"]]
+commands = [["poetry", "run", "pytest"]]
+
+[env.static-types-analysis]
+commands = [["mypy", "."]]
+
+[env.lint]
+commands = [
+    ["poetry", "run", "pylint", "dummy_pkg", "tests"],
+]
+
+[env.formatting]
+commands = [
+    ["poetry", "run", "flake8"],
+    ["poetry", "run", "black", "--check", "dummy_pkg", "tests"],
+    ["poetry", "run", "isort", "--check", "--diff", "dummy_pkg", "tests"],
+]

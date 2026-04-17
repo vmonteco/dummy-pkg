@@ -1,0 +1,32 @@
+[project]
+name = "dummy-pkg"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "vmonteco"}
+]
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+]
+
+[tool.poetry]
+package-mode = false
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[dependency-groups]
+dev = [
+    "pytest (>=9.0.3,<10.0.0)",
+    "mypy (>=1.20.1,<2.0.0)",
+    "black (>=26.3.1,<27.0.0)",
+    "isort (>=8.0.1,<9.0.0)",
+    "flake8 (>=7.3.0,<8.0.0)",
+    "pylint (>=4.0.5,<5.0.0)"
+]
+
+[tool.black]
+target-version = ["py310", "py311", "py312", "py313", "py314"]
+line-length = 79  # Using the PEP8 value
